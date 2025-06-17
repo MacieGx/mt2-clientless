@@ -1,0 +1,27 @@
+﻿using System.Text;
+
+namespace MetinClientless.Packets.Send;
+
+public class PacketCGLogin3
+{
+    public static byte[] Serialize(string username, string password, string pin)
+    {
+        return new BufferBuilder(326, true)
+            .AddByte((byte)EClientToServer.HEADER_CG_LOGIN3)
+            .AddString(username, Constants.ID_MAX_NUM)
+            .AddByte(0x00)
+            .AddString(password, Constants.PASS_MAX_NUM)
+            .AddByte(0x00)
+            .AddString(pin, Constants.PIN_MAX_NUM)
+            .AddByte(0x00)
+            .AddUInt32(GameState.RandomClientKey[0])
+            .AddUInt32(GameState.RandomClientKey[1])
+            .AddUInt32(GameState.RandomClientKey[2])
+            .AddUInt32(GameState.RandomClientKey[3])
+            .AddBytes(Encoding.ASCII.GetBytes(Configuration.Account.HwidHash))
+            .AddByte(0x00, 3)
+            .AddBytes([0x5C, 0x15, 0x21, 0x00, 0xAC, 0x10, 0xB7, 0x75, 0x5F, 0xCC, 0x8D, 0x77, 0x08, 0xF8, 0x19, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x40, 0xE7, 0x7B, 0x07, 0x00, 0x00, 0x00, 0x00, 0x10, 0x00, 0x00, 0x00, 0x20, 0x0A, 0xF1, 0x75, 0xA0, 0xE7, 0x7B, 0x07, 0xAC, 0xF7, 0x19, 0x00, 0x88, 0x63, 0xAB, 0x77, 0xB0, 0xFD, 0x7D, 0x07, 0x40])
+            .Build();
+
+    }
+}

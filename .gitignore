@@ -1,0 +1,20 @@
+﻿# Rider / IntelliJ
+.idea/
+*.sln.DotSettings.user
+
+# Visual Studio
+.vs/
+
+# Build results
+bin/
+obj/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Environment files and secrets
+.env
+*.env.*
